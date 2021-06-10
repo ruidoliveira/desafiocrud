@@ -7,9 +7,6 @@ const CitySchema = new Schema({
     created: { type: Date, default: Date.now}
 })
 
-
-
 module.exports = mongoose.model('City', CitySchema);
 
 
-//Cliente: nome completo, sexo, data de nascimento, idade e cidade onde mora.

@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Users = require('../model/user');
+const bcrypt = require('bcrypt');
 
 router.use(express.json());
 
@@ -27,6 +28,10 @@ router.post('/create', (req, res) =>{
             return res.send(data);
         });
     });
+});
+
+router.post('/auth', (req, res) =>{
+
 });
 
 module.exports = router;

@@ -3,6 +3,7 @@ const app = express();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 
+
 //string de conexao -> 
 const url = 'mongodb+srv://usuario_admin:admin@clusterapi.xvkkz.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
 const options = {poolSize: 5, useNewUrlParser: true, useUnifiedTopology: true}
@@ -20,7 +21,7 @@ mongoose.connection.on('disconnected', () =>{
 
 mongoose.connection.on('connected', () =>{
     console.log(`✅ Aplicação conectada do bando de dados!`);
-})
+});
 
 
 //body parser
@@ -28,11 +29,12 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
 
-const indexRoute = require('./Routes/index.js');
+
+
 const usersRoute = require('./Routes/user.js');
 const cityRoute = require('./Routes/city.js');
 
-app.use('/', indexRoute);
+
 app.use('/users', usersRoute);
 app.use('/city', cityRoute);
 
