@@ -37,4 +37,16 @@ router.delete('/delete/:id', async (req, res) => {
         return res.sendStatus(400).send({ error: 'Error deleting project' });
     }
 });
+
+router.patch('/update/:id', async (req, res) =>{
+    try{
+        const id = req.params.id;
+        const updates = req.body;
+
+        const result = await City.replaceOne(id, updates);
+        res.send(result);
+    }catch(error){
+        return res.sendStatus(400).send({ error: 'Erro em atualizar o a Cidade!' });
+    }
+});
 module.exports = router;

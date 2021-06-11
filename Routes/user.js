@@ -10,7 +10,7 @@ router.get('/', (req, res) =>{
         if(err) return res.send({error: 'Erro na consulta de usuários!'});
         return res.send(data);
     })
-    return res.json(req.body);
+    
 });
 
 
@@ -32,6 +32,29 @@ router.post('/create', (req, res) =>{
 
 router.post('/auth', (req, res) =>{
 
+});
+
+router.delete('/delete/:id', async (req, res) => {
+    try {
+        const _id = Users.count({id: req.params.id});
+        await Users.deleteOne({"_id": req.params.id});
+        return res.status(202).send({message: 'deleted!'});
+
+    }catch (err) {
+        return res.sendStatus(400).send({ error: 'Error deleting project' });
+    }
+});
+
+router.patch('/update/:id', async (req, res) =>{
+    try{
+        const id = req.params.id;
+        const updates = req.body;
+
+        const result = await Users.findByIdAndUpdate(id, updates);
+        res.send(result);
+    }catch(error){
+        return res.sendStatus(400).send({ error: 'Erro em atualizar o a usuario!' });
+    }
 });
 
 module.exports = router;
